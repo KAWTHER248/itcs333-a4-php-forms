@@ -25,22 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     if (!validate_required($name)) {
-        $errors['name'] = 'Name is required.';
-    } elseif (!validate_length($name, 2, 60)) {
-        $errors['name'] = 'Name must be between 2 and 60 characters';
-    }
+    $errors['name'] = 'Name is required.';
+} elseif (!validate_length($name, 2, 60)) {
+    $errors['name'] = 'Name is too short or too long.';
+}
 
-    
-    if (!validate_email($email)) {
-        $errors['email'] = 'Please enter a valid email address';
-    }
+if (!validate_email($email)) {
+    $errors['email'] = 'Invalid email address.';
+}
 
-    
-    if (!validate_required($message)) {
-        $errors['message'] = 'Message is required.';
-    } elseif (!validate_length($message, 10, 1000)) {
-        $errors['message'] = 'Message must be between 10 and 1000 characters';
-    }
+if (!validate_required($message)) {
+    $errors['message'] = 'Message is required.';
+} elseif (!validate_length($message, 10, 1000)) {
+    $errors['message'] = 'Message is too short or too long.';
+}
 
     
     if (empty($errors)) {
